@@ -33,8 +33,14 @@ function discrete_adjoint(sol, dg, t; autojacvec=ForwardDiffVJP(), kwargs...)
         ui = sol.u[i]
         # compute right hand side
         idx = findfirst(tidx -> tidx == ti, t)
+        function localG(xi)
+            Xnew = sol.u
+            Xnew[i] = xi
+            G(out,Xnew,p,t)
+            return out
+        end
         if !isnothing(idx)
-            ReverseDiff.gradient!(dgval,G,(sol,p,t))#dg(dgval, ui, p, ti, idx) #dgval = dG/dxi
+            ReverseDiff.gradient!(dgval,localG,ui)#dg(dgval, ui, p, ti, idx) #dgval = dG/dxi
             rhs .-= dgval
         end
         rhs .*= -1
