@@ -61,8 +61,7 @@ $$
  & \frac{\partial r_1}{\partial x_1}^* & \cdots & \frac{\partial r_{n-1}}{\partial x_1}^* & \frac{\partial r_n}{\partial x_1}^* \\
  &  & \ddots & \vdots & \vdots \\
   & & &  \frac{\partial r_{n-1}}{\partial x_{n-1}}^* & \frac{\partial r_n}{\partial x_{n-1}}^*\\
- & & & & \frac{\partial r_n}{\partial x_n}^*
-\end{bmatrix}
+ & & & & \frac{\partial r_n}{\partial x_n}^* \end{bmatrix}
 \begin{bmatrix}
   \lambda_0 \\
   \lambda_1 \\
