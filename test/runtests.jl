@@ -3,6 +3,11 @@ using Test
 
 @testset "DiscreteAdjoint.jl" begin
 
+    #-------Try to let G be passed in
+    function G(out,X,p,t) #Just the sum of solution
+        out = sum(X)
+    end
+
     function f(du, u, p, t)
         du[1] = dx = p[1]*u[1] - p[2]*u[1]*u[2]
         du[2] = dy = -p[3]*u[2] + p[4]*u[1]*u[2]
@@ -140,5 +145,7 @@ using Test
 
     #@test isapprox(du0_z, dx[1:2])
     #@test isapprox(dp_z, dx[3:end])
+
+
 
 end

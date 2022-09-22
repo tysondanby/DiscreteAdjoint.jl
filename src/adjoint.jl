@@ -34,7 +34,7 @@ function discrete_adjoint(sol, dg, t; autojacvec=ForwardDiffVJP(), kwargs...)
         # compute right hand side
         idx = findfirst(tidx -> tidx == ti, t)
         if !isnothing(idx)
-            dg(dgval, ui, p, ti, idx)
+            ReverseDiff.gradient!(dgval,G,(sol,p,t))#dg(dgval, ui, p, ti, idx) #dgval = dG/dxi
             rhs .-= dgval
         end
         rhs .*= -1
